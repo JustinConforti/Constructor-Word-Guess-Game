@@ -12,3 +12,49 @@ var correctGuesses = [];
 
 var guessesLeft = 10;
 
+function startGame() {
+
+    //
+    if (requireNewWord) {
+        var randomIndex = Math.floor(Math.random() * unitedStates.length);
+        var selectedWord = unitedStates[randomIndex];
+
+        newSelectedWord = new Word (selectedWord)
+        requireNewWord = false;
+
+    }
+
+    let completedWordArr = [];
+    newSelectedWord.objArray.forEach(checkIfDone)
+
+    if(completeWordArr.indexOf(false)) {
+        inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "Guess a letter between A-Z",
+                    name: "userinput"
+                }
+            ])
+        .then(function (input){
+
+            if (!letterArray.indexOf(input.userinput)) {
+                console.log("Try again, select a letter between A-Z\n");
+                startGame()
+            } else {
+                if (incorrectGuesses.indexOf(input.userinput) || correctGuesses.indexOf(input.userinput)) {
+                    console.log("\nThat letter was already guessed")
+                    startGame()
+                } else {
+                    if (input.userinput === "") {
+                        console.log("\nTry again, you didn't enter anything")
+                    }
+                 else {
+                    let wordCheckArray = [];
+
+                    selectedWord.userGuess(input.userinput)
+                }
+            }
+        })
+    }
+}
