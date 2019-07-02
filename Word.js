@@ -1,4 +1,4 @@
-var Letters = require("./letter.js");
+var Letters = require("./Letter.js");
 
 function Word(answer) {
         
@@ -7,8 +7,8 @@ function Word(answer) {
 
         // loop that will take each index of the answer parameter run it through the Letters constructor functions and push to objArray array.
     for (let i = 0; i < answer.length; i++) {
-        let letter = new Letters(answer[i]);
-        this.objArray.push(letter)
+        let currLetter = new Letters(answer[i]);
+        this.objArray.push(currLetter)
     }
 
     this.consoleSpacing = function () {

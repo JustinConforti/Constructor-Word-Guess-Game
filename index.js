@@ -1,4 +1,4 @@
-var Word = require("./word.js");
+var Word = require("./Word.js");
 var inquirer = require("inquirer");
 
 let letterArray = "abcdefghijklmnopqrstuvwxyz";
@@ -53,8 +53,69 @@ function startGame() {
                     let wordCheckArray = [];
 
                     selectedWord.userGuess(input.userinput)
+
+                    selectedWord.objArray.forEach(wordCheck);
+                    if (wordCheckArray.join('') === wordComplete.join('')) {
+                        console.log("\nIncorrect\n");
+                        
+                        incorrectGuesses.push(input.userinput);
+                        guessesLeft--;
+                    } else {
+                        console.log("\nCorrect\n");
+
+                        correctGuesses.push(input.userinput);
+                    }
+
+                    selectedWord.consoleSpacing()
+
+                    console.log("Guesses Left: " +guessesLeft + "\n");
+
+                    console.log("Letters Guessed: " + incorrectGuesses.join(" ") + "\n");
+
+                    if (guessesLeft > 0) {
+                        startGame()
+                    } else {
+                        console.log("Sorry, you Lose!\n");
+
+                        restartGame()
+                    }
+
+                    function wordCheck(key) {
+                        wordCheckArray.push(key.guessed);
+                    }
+                }
                 }
             }
         })
+
+    } else {
+        console.log("You Win!\n")
+
+        restartGame()
     }
 }
+
+function restartGame() {
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                message: "Would you like to:",
+                choices: ["Play Again", "Exit"],
+                name: "restart"
+            }
+        ])
+        .then(function (input) {
+            if (input.restart === "Play Again") {
+                requireNewWord = false;
+                incorrectGuesses = [];
+                correctGuesses = [];
+                guessesLeft = 10;
+                startGame();
+            } else {
+                return;
+            }
+        })
+}
+
+startGame()
