@@ -14,12 +14,25 @@
 //  A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true
 // if it was guessed correctly
 
+var currentLetter = "d"
+letters(currentLetter)
 
-function letters() {
+function letters(currentLetter) {
 
+    this.currentCharacter = currentLetter
     this.guessed = false;
 
     this.beenGuessed = function() {
-        
+
+            if(this.guessed) {
+                return "_"
+            } else {
+                return currentCharacter
+            }
+    }
+
+    this.characterCheck = function() {
+
+        if
     }
 }
