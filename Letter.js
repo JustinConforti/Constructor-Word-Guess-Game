@@ -1,3 +1,5 @@
+import { timingSafeEqual } from "crypto";
+
 // * A string value to store the underlying character
 // for the letter
 
@@ -14,9 +16,6 @@
 //  A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true
 // if it was guessed correctly
 
-var currentLetter = "d"
-letters(currentLetter)
-
 function letters(currentLetter) {
 
     this.currentCharacter = currentLetter
@@ -24,15 +23,23 @@ function letters(currentLetter) {
 
     this.beenGuessed = function() {
 
-            if(this.guessed) {
+            if (this.currentLetter === " ") {
+                this.guessed = true
+                return " ";
+            } else {
+                if(!this.guessed) {
                 return "_"
             } else {
-                return currentCharacter
+                return this.letter
             }
     }
+}
 
-    this.characterCheck = function() {
+    this.characterCheck = function(guess) {
 
-        if
+        if (guess === this.letter) {
+            this.guessed = true;
+        }
     }
 }
+module.export = Letters
