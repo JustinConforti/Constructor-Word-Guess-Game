@@ -11,5 +11,19 @@ function Word(answer) {
         this.objArray.push(letter)
     }
 
-    
+    this.consoleSpacing = function () {
+        spacing = "";
+        for (let i = 0; i < this.objArray.length; i++) {
+            spacing += this.objArray[i] + " ";
+        }
+        console.log(spacing + "\n")
+    }
+
+    this.userGuess = function (input) {
+        for (let i = 0; i < this.objArray.length; i++) {
+            this.objArray[i].guess(input)
+        }
+    }
 }
+
+module.exports = Word
